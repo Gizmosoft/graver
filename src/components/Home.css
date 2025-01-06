@@ -1,0 +1,42 @@
+.home-page body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    background-color: #f0f0f0; /* Optional background color */
+}
+
+.home-page {
+    margin-top: 250px;
+}
+
+.home-page .tag-line {
+    margin-bottom: 20px;
+}
+
+.home-page .auth-btn {
+    display: flex; /* Flexbox to center the button */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Align vertically if needed */
+    width: 100%; /* Full width to center button */
+}
+
+.home-page .auth-btn button {
+    width: 300px; /* Button width (adjust as needed) */
+    height: 50px; /* Button height (optional) */
+    font-size: 16px; /* Font size for the button */
+  }
+
+  .home-page .tag-line-1 {
+    font-size: 60px;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+}
+
+.home-page .tag-line-2 {
+    font-size: 30px;
+    margin: 10px 0;
+    text-align: center;
+}

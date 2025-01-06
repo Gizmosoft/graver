@@ -1,0 +1,9 @@
+.app-navbar {
+    position: fixed;
+    background-color: #f037b6;
+    top: 0;
+    left: 0;
+    width: "100%";
+    color: #fff;
+    /* z-index: 1000; */
+}

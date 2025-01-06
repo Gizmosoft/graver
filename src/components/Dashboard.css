@@ -1,0 +1,42 @@
+.dashboard-page {
+  margin-top: 100px;
+  margin-left: 20px;
+}
+
+.dashboard-page .create-btn {
+  background-color: #fedff2;
+  color: #000;
+}
+
+.dashboard-page .postcards-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.dashboard-page .postcard {
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  /* overflow: hidden; */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column; /* Ensure text stays below the image */
+}
+
+.dashboard-page .postcard img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.dashboard-page .postcard p {
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  margin: 0; /* Remove default margin that might affect alignment */
+  word-wrap: break-word; /* Ensure long text doesn't overflow */
+}

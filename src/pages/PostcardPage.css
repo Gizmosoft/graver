@@ -1,0 +1,46 @@
+.post-card-page {
+  margin-top: 100px;
+  /* margin: 20px auto; Center the content and add vertical spacing */
+  /* max-width: 800px; Limit the width to prevent horizontal scrolling */
+  /* padding: 10px; Add padding for inner spacing */
+  /* box-sizing: border-box; */
+}
+
+.post-card-page h3 {
+  margin-bottom: 30px;
+}
+
+.delete-button {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.dashboard-redirect {
+  position: fixed; /* Keep the link fixed to the bottom-left corner */
+  bottom: 20px;
+  left: 20px;
+  font-size: 16px;
+}
+
+.dashboard-redirect a {
+  text-decoration: none;
+  color: #f037b6; /* Link color */
+  transition: color 0.3s ease;
+}
+
+.dashboard-redirect a:hover {
+  color: #f675cd; /* Hover color for the link */
+}
+
+@media (max-width: 600px) {
+  .post-card-page {
+    margin: 10px;
+    padding: 5px;
+  }
+
+  .dashboard-redirect {
+    font-size: 14px;
+    left: 10px;
+    bottom: 10px;
+  }
+}

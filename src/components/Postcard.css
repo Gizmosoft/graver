@@ -1,0 +1,95 @@
+.postcard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  position: relative;
+}
+
+.postcard {
+  width: 300px;
+  height: 200px;
+  position: relative;
+  perspective: 1000px; /* Enables 3D effect */
+  margin-bottom: 20px;
+}
+
+.postcard-front,
+.postcard-back {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  backface-visibility: hidden; /* Hides the back side when not flipped */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.6s; /* Smooth flip animation */
+  box-sizing: border-box; /* Includes padding in width/height */
+}
+
+.postcard-front {
+  transform: rotateY(0deg); /* Front side is the default view */
+  background-color: #fff;
+}
+
+.postcard-back {
+  transform: rotateY(180deg); /* Back side starts flipped */
+  background-color: #f8f8f8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  font-size: 16px;
+  text-align: center;
+  color: #333;
+  box-sizing: border-box; /* Prevents resizing due to padding */
+  overflow-wrap: break-word; /* Prevents long words from overflowing */
+  word-wrap: break-word;
+  word-break: break-word;
+  box-sizing: border-box;
+}
+
+.postcard-text {
+  width: 100%; /* Ensure the text takes up the full width of the back */
+  height: auto;
+  color: #333;
+  line-height: 1.5; /* Adjust line height for better readability */
+  overflow: hidden; /* Hide text that overflows, if any */
+}
+
+.postcard.flipped .postcard-front {
+  transform: rotateY(180deg); /* Flip the front to hide it */
+}
+
+.postcard.flipped .postcard-back {
+  transform: rotateY(0deg); /* Flip the back to show it */
+}
+
+.postcard-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.flip-button {
+  background: none;
+  border: none;
+  text-decoration: none;
+  color: inherit;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-flex; /* Ensures proper alignment */
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+  transition: background-color 0.3s ease;
+  position: absolute; /* Dynamically position the button */
+  top: calc(100% + 10px); /* Place it just below the postcard */
+}
+
+.flip-button:hover {
+  background-color: #e0e3e6;
+}
