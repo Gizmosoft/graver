@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import "./Postcard.css";
 import { MdOutlineFlipCameraAndroid } from "react-icons/md";
 import { Link } from "react-router-dom";
+import PostcardImageRefs from "./PostcardImageRefs.jsx";
 
 const Postcard = ({ postcard }) => {
   const [flipped, setFlipped] = useState(false);
@@ -16,6 +17,8 @@ const Postcard = ({ postcard }) => {
   const handleFlip = () => {
     setFlipped(!flipped);
   };
+
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_APP_URL;
 
   // Set the dimensions of the card dynamically based on the image
   useEffect(() => {
@@ -80,12 +83,13 @@ const Postcard = ({ postcard }) => {
       >
         {/* Front side of the card (Image) */}
         <div className="postcard-front">
-          <img
+            <PostcardImageRefs postcard={postcard.data} BACKEND_URL={BACKEND_URL} ref={imageRef} alt="Postcard" className="postcard-image"/>
+          {/* <img
             ref={imageRef}
-            src={`http://localhost:5000/${postcard.data.image}`}
+            src={`${BACKEND_URL}/${postcard.data.image}`}
             alt="Postcard"
             className="postcard-image"
-          />
+          /> */}
         </div>
 
         {/* Back side of the card (Text) */}
@@ -97,9 +101,9 @@ const Postcard = ({ postcard }) => {
       </div>
 
       {/* Flip Button */}
-      <Link className="flip-button" onClick={handleFlip}>
+      <button className="flip-button" onClick={handleFlip}>
         {flipped ? <MdOutlineFlipCameraAndroid title="View Image" /> : <MdOutlineFlipCameraAndroid title="View Message" />}
-      </Link>
+      </button>
     </div>
   );
 };

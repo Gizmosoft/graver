@@ -17,6 +17,8 @@ const PostcardPage = () => {
   const [isViewMode, setIsViewMode] = useState(false);
   const [canEdit, setCanEdit] = useState(false);
 
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_APP_URL;
+
   // Parse query parameters to check if the page is in "view" mode
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
@@ -28,7 +30,12 @@ const PostcardPage = () => {
     const fetchPostcard = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/postcards/${postcardId}`
+          `${BACKEND_URL}/api/postcards/${postcardId}`,
+          {
+            headers: new Headers({
+              "ngrok-skip-browser-warning": "69420",
+            }),
+          }
         ); // API call
         if (!response.ok) {
           throw new Error("Failed to fetch postcard");
@@ -72,10 +79,32 @@ const PostcardPage = () => {
     });
   };
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
     if (window.confirm("Are you sure you want to delete this postcard?")) {
-      // Add delete logic here
-      alert("Postcard deleted!");
+      try {
+        const response = await fetch(
+          `${BACKEND_URL}/api/postcards/delete/${postcardId}`,
+          {
+            method: "DELETE",
+            headers: new Headers({
+              "Content-Type": "application/json",
+              "ngrok-skip-browser-warning": "69420",
+            }),
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error("Failed to delete the postcard");
+        }
+
+        alert("Postcard deleted successfully!");
+        window.location.href = "/dashboard"; // Redirect the user back to the dashboard after deletion
+      } catch (error) {
+        console.error("Error deleting postcard:", error);
+        alert(
+          "An error occurred while trying to delete the postcard. Please try again."
+        );
+      }
     }
   };
 
@@ -118,7 +147,11 @@ const PostcardPage = () => {
       </Box>
 
       <Box className="dashboard-redirect" mt={4}>
-        <Link to="/dashboard">Back to Dashboard</Link>
+        {isViewMode ? (
+          <Link to="/dashboard">Create a Postcard Yourself!</Link>
+        ) : (
+          <Link to="/dashboard">Back to Dashboard</Link>
+        )}
       </Box>
     </Box>
   );

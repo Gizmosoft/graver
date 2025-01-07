@@ -6,14 +6,13 @@ import Logo from "./Logo";
 
 const Home = () => {
   const navigate = useNavigate();
-
-  const clientId =
-    "350465772922-rar4ljetkl2euqlnvch0n72f5aqlstah.apps.googleusercontent.com";
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_APP_URL;
+  const clientId = import.meta.env.VITE_GOOGLE_SIGNIN_CLIENT_ID;
 
   const handleSuccess = (response) => {
     const token = response.credential; // JWT Token provided by Google
     // Send the token to your backend for verification
-    fetch("http://localhost:5000/api/auth/google-login", {
+    fetch(`${BACKEND_URL}/api/auth/google-login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token }),

@@ -9,6 +9,7 @@ import "./Dashboard.css";
 import { FaPlus } from "react-icons/fa6";
 import { MdFileUpload } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import PostcardImage from "./PostcardImage.jsx";
 
 const Dashboard = ({ onLogin }) => {
   const [open, setOpen] = useState(false);
@@ -16,6 +17,7 @@ const Dashboard = ({ onLogin }) => {
   const [text, setText] = useState("");
   const [postcards, setPostcards] = useState([]); // State for storing user's postcards
   const navigate = useNavigate();
+  const BACKEND_URL = import.meta.env.VITE_BACKEND_APP_URL;
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
@@ -25,7 +27,7 @@ const Dashboard = ({ onLogin }) => {
       navigate("/"); // Redirect to home if not logged in
     }
   }, [onLogin, navigate]);
-  
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -61,13 +63,13 @@ const Dashboard = ({ onLogin }) => {
     formData.append("creator", creator); // The creator's ID
 
     try {
-      const response = await fetch(
-        "http://localhost:5000/api/postcards/create",
-        {
-          method: "POST",
-          body: formData, // Send form data
-        }
-      );
+      const response = await fetch(`${BACKEND_URL}/api/postcards/create`, {
+        method: "POST",
+        headers: new Headers({
+          "ngrok-skip-browser-warning": "69420",
+        }),
+        body: formData, // Send form data
+      });
 
       const result = await response.json();
 
@@ -99,11 +101,17 @@ const Dashboard = ({ onLogin }) => {
   // Fetch user's postcards
   const fetchPostcards = async () => {
     const creatorId = localStorage.getItem("userId");
-
+    console.log("Backend URL-> ", BACKEND_URL);
     try {
       const response = await fetch(
-        `http://localhost:5000/api/postcards/all/${creatorId}`
+        `${BACKEND_URL}/api/postcards/all/${creatorId}`,
+        {
+          headers: new Headers({
+            "ngrok-skip-browser-warning": "69420",
+          }),
+        }
       );
+      console.log(response);
       const result = await response.json();
 
       if (response.ok) {
@@ -120,7 +128,7 @@ const Dashboard = ({ onLogin }) => {
   // Fetch postcards when component loads
   useEffect(() => {
     fetchPostcards();
-  }, []);
+  }, [postcards]);
 
   const handlePostcardClick = (postcardId) => {
     navigate(`/card/${postcardId}`); // Navigate to the postcard page based on its ID
@@ -199,17 +207,15 @@ const Dashboard = ({ onLogin }) => {
       {/* Display Postcards */}
       <div className="postcards-list">
         {postcards.map((postcard) => (
-          <div 
-            key={postcard._id} 
+          <div
+            key={postcard._id}
             className="postcard"
             onClick={() => handlePostcardClick(postcard._id)}
             style={{ cursor: "pointer" }}
-            >
-                <img
-                src={`http://localhost:5000/${postcard.image}`}
-                alt="Postcard"
-                />
-                <p>{postcard._id}</p>
+          >
+            {/* <img src={`${BACKEND_URL}/${postcard.image}`} alt="Postcard" /> */}
+            <PostcardImage postcard={postcard} BACKEND_URL={BACKEND_URL}/>
+            <p>{postcard._id}</p>
           </div>
         ))}
       </div>
