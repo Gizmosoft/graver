@@ -1,17 +1,17 @@
 {
     "rewrites": [
-        {
-            "source": "/(.*)",
-            "has": [
-                {
-                    "type": "file"
-                }
-            ],
-            "destination": "/$1"
-        },
-        {
-            "source": "/(.*)",
-            "destination": "/index.html"
-        }
+      {
+        "source": "/_next/*",
+        "destination": "/_next/*"
+      },
+      {
+        "source": "/static/*",
+        "destination": "/static/*"
+      },
+      {
+        "source": "/(.*)",
+        "destination": "/index.html"
+      }
     ]
-}
+  }
+  
