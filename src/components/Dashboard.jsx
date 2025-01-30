@@ -111,7 +111,7 @@ const Dashboard = ({ onLogin }) => {
           }),
         }
       );
-      console.log(response);
+      console.log(response.text);
       const result = await response.json();
 
       if (response.ok) {
