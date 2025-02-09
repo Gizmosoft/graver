@@ -128,7 +128,7 @@ const Dashboard = ({ onLogin }) => {
   // Fetch postcards when component loads
   useEffect(() => {
     fetchPostcards();
-  }, [postcards]);
+  }, []);
 
   const handlePostcardClick = (postcardId) => {
     navigate(`/card/${postcardId}`); // Navigate to the postcard page based on its ID

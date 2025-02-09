@@ -3,6 +3,9 @@ import React, { useEffect, useState } from "react";
 const PostcardImage = ({ postcard, BACKEND_URL, ...rest }) => {
   const [imageSrc, setImageSrc] = useState("");
 
+  console.log(postcard);
+  console.log(BACKEND_URL);
+
   useEffect(() => {
     const fetchImage = async () => {
       try {
