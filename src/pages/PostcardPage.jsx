@@ -143,7 +143,13 @@ const PostcardPage = () => {
       </Grid>
 
       <Box mt={4}>
-        <Postcard postcard={postcard} />
+        {loading ? (
+          <p>Loading...</p>
+        ) : postcard && postcard.data ? (
+          <Postcard postcard={postcard} />
+        ) : (
+          <p>No postcard data available.</p>
+        )}
       </Box>
 
       <Box className="dashboard-redirect" mt={4}>

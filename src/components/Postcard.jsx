@@ -83,13 +83,17 @@ const Postcard = ({ postcard }) => {
       >
         {/* Front side of the card (Image) */}
         <div className="postcard-front">
-            <PostcardImageRefs postcard={postcard.data} BACKEND_URL={BACKEND_URL} ref={imageRef} alt="Postcard" className="postcard-image"/>
-          {/* <img
-            ref={imageRef}
-            src={`${BACKEND_URL}/${postcard.data.image}`}
-            alt="Postcard"
-            className="postcard-image"
-          /> */}
+          {postcard.data.image ? (
+            <PostcardImageRefs
+              postcard={postcard.data}
+              BACKEND_URL={BACKEND_URL}
+              ref={imageRef}
+              alt="Postcard"
+              className="postcard-image"
+            />
+          ) : (
+            <p>Loading image...</p>
+          )}
         </div>
 
         {/* Back side of the card (Text) */}
@@ -102,7 +106,11 @@ const Postcard = ({ postcard }) => {
 
       {/* Flip Button */}
       <button className="flip-button" onClick={handleFlip}>
-        {flipped ? <MdOutlineFlipCameraAndroid title="View Image" /> : <MdOutlineFlipCameraAndroid title="View Message" />}
+        {flipped ? (
+          <MdOutlineFlipCameraAndroid title="View Image" />
+        ) : (
+          <MdOutlineFlipCameraAndroid title="View Message" />
+        )}
       </button>
     </div>
   );

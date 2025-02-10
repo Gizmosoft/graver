@@ -7,6 +7,8 @@ const PostcardImage = ({ postcard, BACKEND_URL, ...rest }) => {
   console.log(BACKEND_URL);
 
   useEffect(() => {
+    if (!postcard || !postcard.image) return; // Ensure postcard data exists
+
     const fetchImage = async () => {
       try {
         // Fetch the image as a Blob
@@ -32,9 +34,9 @@ const PostcardImage = ({ postcard, BACKEND_URL, ...rest }) => {
     };
 
     fetchImage();
-  }, [postcard.image, BACKEND_URL]); // Run effect when postcard.image or BACKEND_URL changes
+  }, [postcard, BACKEND_URL]); // Run effect when postcard.image or BACKEND_URL changes
 
-  return <img src={imageSrc} {...rest}/>;
+  return imageSrc ? <img src={imageSrc} {...rest} /> : <p>Loading image...</p>;
 };
 
 export default PostcardImage;
