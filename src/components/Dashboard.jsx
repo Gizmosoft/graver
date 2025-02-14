@@ -213,8 +213,8 @@ const Dashboard = ({ onLogin }) => {
             onClick={() => handlePostcardClick(postcard._id)}
             style={{ cursor: "pointer" }}
           >
-            {/* <img src={`${BACKEND_URL}/${postcard.image}`} alt="Postcard" /> */}
-            <PostcardImage postcard={postcard} BACKEND_URL={BACKEND_URL}/>
+            <img src={postcard.image} alt="Postcard" />
+            {/* <PostcardImage postcard={postcard} BACKEND_URL={BACKEND_URL}/> */}
             <p>{postcard._id}</p>
           </div>
         ))}

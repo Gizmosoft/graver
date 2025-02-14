@@ -7,7 +7,7 @@ const PostcardImageRefs = forwardRef(({ postcard, BACKEND_URL, ...rest }, ref) =
     const fetchImage = async () => {
       try {
         // Fetch the image as a Blob
-        const response = await fetch(`${BACKEND_URL}/${postcard.image}`, {
+        const response = await fetch(postcard.image, {
           headers: new Headers({
             "ngrok-skip-browser-warning": "69420",
           }),
