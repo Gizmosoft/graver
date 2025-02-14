@@ -1,0 +1,10 @@
+{
+    "routes": {
+        "/**": "index.html"
+    },
+    "headers": {
+        "/assets/**": {
+            "Content-Type": "text/css"
+        }
+    }
+}
