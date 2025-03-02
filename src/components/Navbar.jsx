@@ -6,21 +6,25 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import "./Navbar.css";
 import { useNavigate } from "react-router-dom";
+import NavbarLogo from "./NavbarLogo";
 
 const Navbar = ({ isLoggedIn, onLogout }) => {
-    const navigate = useNavigate(); // Initialize useNavigate here
+  const navigate = useNavigate(); // Initialize useNavigate here
 
-    const handleLogoutClick = () => {
-        onLogout(); // Call the parent logout function to update the state
-        navigate("/"); // Navigate to the home page
-      };
+  const handleLogoutClick = () => {
+    onLogout(); // Call the parent logout function to update the state
+    navigate("/"); // Navigate to the home page
+  };
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar>
         <Toolbar className="app-navbar">
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Graver
-          </Typography>
+          </Typography> */}
+          <Box sx={{ flexGrow: 1 }}>
+            <NavbarLogo />
+          </Box>
           {isLoggedIn && (
             <Button color="inherit" onClick={handleLogoutClick}>
               Logout
