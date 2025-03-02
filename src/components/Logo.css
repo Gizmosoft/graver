@@ -9,3 +9,22 @@
   color: #f037b6;
   outline-color: #fff;
 }
+
+.navbar-logo {
+  font-family: "Playwrite AU SA", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  align-items: left;
+  text-align: left;
+  font-size: 25px;
+  color: #fff;
+  outline-color: #fff;
+  text-decoration: none;
+}
+
+.navbar-logo a {
+  color: inherit;
+  text-decoration: none;
+}
