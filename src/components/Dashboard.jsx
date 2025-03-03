@@ -13,6 +13,7 @@ import PostcardImage from "./PostcardImage.jsx";
 
 const Dashboard = ({ onLogin }) => {
   const [open, setOpen] = useState(false);
+  const [title, setTitle] = useState("");
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
   const [postcards, setPostcards] = useState([]); // State for storing user's postcards
@@ -34,6 +35,7 @@ const Dashboard = ({ onLogin }) => {
 
   const handleClose = () => {
     setOpen(false);
+    setTitle("");
     setImage(null);
     setText("");
   };
@@ -58,6 +60,7 @@ const Dashboard = ({ onLogin }) => {
 
     // Create FormData to send the image and data
     const formData = new FormData();
+    formData.append("title", title);
     formData.append("image", image); // The image file
     formData.append("text", text); // The text content of the postcard
     formData.append("creator", creator); // The creator's ID
@@ -86,9 +89,14 @@ const Dashboard = ({ onLogin }) => {
     }
 
     setOpen(false);
+    setTitle("");
     setImage(null);
     setText("");
   };
+
+  const handleTitleChange = (e) => {
+    setTitle(e.target.value);
+  }
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -174,6 +182,16 @@ const Dashboard = ({ onLogin }) => {
               {image && <p>{image.name}</p>}
             </div>
 
+            {/* Text Area for Postcard Title */}
+            <TextField
+              label="Enter Postcard Title"
+              variant="outlined"
+              fullWidth
+              inputProps={{ maxLength: 30 }}
+              value={title}
+              onChange={handleTitleChange}
+            />
+            <br /><br />
             {/* Text Area for Enter Message */}
             <TextField
               label="Enter Message"
