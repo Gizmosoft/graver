@@ -5,7 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import "./Navbar.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavbarLogo from "./NavbarLogo";
 
 const Navbar = ({ isLoggedIn, onLogout }) => {
@@ -16,8 +16,8 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
     navigate("/"); // Navigate to the home page
   };
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar>
+    // <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="fixed">
         <Toolbar className="app-navbar">
           {/* <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Graver
@@ -25,14 +25,13 @@ const Navbar = ({ isLoggedIn, onLogout }) => {
           <Box sx={{ flexGrow: 1 }}>
             <NavbarLogo />
           </Box>
+          <Link className="navbar-tabs" to="/about">About</Link>
           {isLoggedIn && (
-            <Button color="inherit" onClick={handleLogoutClick}>
-              Logout
-            </Button>
+            <Link className="navbar-tabs" onClick={handleLogoutClick}>Logout</Link>
           )}
         </Toolbar>
       </AppBar>
-    </Box>
+    // </Box>
   );
 };
 
