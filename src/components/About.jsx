@@ -1,7 +1,5 @@
 import React from 'react';
 import './About.css';
-import App from '../App';
-import {GitHub} from '@mui/icons-material';
 import GithubCard from './GithubCard';
 
 export const About = () => {
