@@ -215,7 +215,7 @@ const Dashboard = ({ onLogin }) => {
           >
             <img src={postcard.image} alt="Postcard" />
             {/* <PostcardImage postcard={postcard} BACKEND_URL={BACKEND_URL}/> */}
-            <p>{postcard._id}</p>
+            <p>{postcard.title}</p>
           </div>
         ))}
       </div>
