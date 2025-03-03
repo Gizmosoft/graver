@@ -1,0 +1,101 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+  }
+  
+  /* Main Container */
+  .container {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  /* GitHub Repo Card */
+  .github-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header */
+  .github-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  /* Repo Links */
+  .repo-links a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .repo-links a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Buttons */
+  .repo-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .repo-buttons a {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-decoration: none;
+    color: #333;
+    background-color: #f1f1f1;
+    transition: background 0.2s;
+  }
+  
+  .repo-buttons a:hover {
+    background-color: #e0e0e0;
+  }
+  
+  /* Repo Stats */
+  .repo-stats {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  
+  .repo-stats span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: #f9f9f9;
+  }
+  
+  /* Error Alert */
+  .error-alert {
+    color: #d9534f;
+    border: 1px solid #d9534f;
+    background-color: #f8d7da;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 15px;
+  }
+  
+  /* Loading Message */
+  .loading {
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+  }
+  

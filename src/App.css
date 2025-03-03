@@ -1,0 +1,41 @@
+/* Ensure page takes full viewport height without unnecessary scrolling */
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden; /* Prevents horizontal scrolling */
+    overflow-y: hidden; /* Prevents unnecessary vertical scrolling */
+}
+
+/* Ensure full height layout */
+.App {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;      /* Ensures full-screen height */
+    overflow: hidden;   /* Prevents unnecessary vertical scrolling */
+}
+
+/* Makes sure content area takes remaining space after the navbar */
+.content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: inherit; /* Centers content horizontally */
+    padding-top: 10px; /* Ensures content starts below navbar */
+    overflow-y: auto; /* Allows scrolling if needed */
+    width: 100%;
+}
+
+/* This makes sure content starts BELOW the navbar automatically */
+.content::before {
+    content: "";
+    display: block;
+    height: 80px; /* Default height of MUI's AppBar */
+}
+
+/* Responsive Adjustment: Reduce height for smaller screens */
+@media (max-width: 600px) {
+    .content::before {
+        height: 56px; /* Smaller navbar height for mobile */
+    }
+}

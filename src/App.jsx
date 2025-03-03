@@ -8,6 +8,7 @@ import Dashboard from "./components/Dashboard.jsx";
 import PostcardPage from "./pages/PostcardPage.jsx";
 import Theme from "./Theme";
 import { ThemeProvider } from "@mui/material";
+import { About } from "./components/About";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -33,15 +34,18 @@ const App = () => {
         <Router>
           {/* Pass isLoggedIn and handleLogout as props to Navbar */}
           <Navbar isLoggedIn={isLoggedIn} onLogout={handleLogout} />
-          <Routes>
-            <Route path="/" element={<Home onLogin={handleLogin} />} />
-            <Route
-              path="/dashboard"
-              element={<Dashboard onLogin={handleLogin} />}
-            />
-            <Route path="/card/:postcardId" element={<PostcardPage />} />
-            <Route path="/test" element={<TestPage />} />
-          </Routes>
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Home onLogin={handleLogin} />} />
+              <Route
+                path="/dashboard"
+                element={<Dashboard onLogin={handleLogin} />}
+              />
+              <Route path="/card/:postcardId" element={<PostcardPage />} />
+              <Route path="/test" element={<TestPage />} />
+              <Route path="/about" element={<About />} />
+            </Routes>
+          </div>
         </Router>
       </div>
     </ThemeProvider>
