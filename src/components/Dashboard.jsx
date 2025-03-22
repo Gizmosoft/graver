@@ -9,7 +9,7 @@ import "./Dashboard.css";
 import { FaPlus } from "react-icons/fa6";
 import { MdFileUpload } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import PostcardImage from "./PostcardImage.jsx";
+import { BsStars } from "react-icons/bs";
 
 const Dashboard = ({ onLogin }) => {
   const [open, setOpen] = useState(false);
@@ -18,6 +18,9 @@ const Dashboard = ({ onLogin }) => {
   const [text, setText] = useState("");
   const [postcards, setPostcards] = useState([]); // State for storing user's postcards
   const navigate = useNavigate();
+  const [showAIInput, setShowAIInput] = useState(false);
+  const [aiPrompt, setAIPrompt] = useState("");
+  const [isGenerating, setIsGenerating] = useState(false);
   const BACKEND_URL = import.meta.env.VITE_BACKEND_APP_URL;
 
   useEffect(() => {
@@ -79,6 +82,10 @@ const Dashboard = ({ onLogin }) => {
       if (response.ok) {
         console.log("Postcard created successfully:", result);
         alert("Postcard created successfully!");
+        // Update state immediately to show the new postcard
+        setPostcards((prevPostcards) => [result.data, ...prevPostcards]);
+
+        handleClose(); // Close the dialog
       } else {
         console.error("Error creating postcard:", result.message);
         alert(result.message || "Failed to create postcard.");
@@ -96,7 +103,7 @@ const Dashboard = ({ onLogin }) => {
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
-  }
+  };
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
@@ -184,17 +191,126 @@ const Dashboard = ({ onLogin }) => {
 
             {/* Text Area for Postcard Title */}
             <TextField
-              label="Enter Postcard Title"
+              label="Give a title to your postcard :)"
               variant="outlined"
               fullWidth
               inputProps={{ maxLength: 30 }}
               value={title}
               onChange={handleTitleChange}
             />
-            <br /><br />
+            <br />
+            <br />
+
+            {/* AI Message Creation */}
+            {!showAIInput ? (
+              <Button
+                className="ai-button"
+                // variant="outlined"
+                // color="primary"
+                onClick={() => setShowAIInput(true)}
+                style={{ marginBottom: "16px" }}
+              >
+                <BsStars />&nbsp;&nbsp;Create Message with AI
+              </Button>
+            ) : (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  marginBottom: "16px",
+                }}
+              >
+                <TextField
+                  label="Describe the postcard message you want AI to generate..."
+                  variant="outlined"
+                  value={aiPrompt}
+                  onChange={(e) => setAIPrompt(e.target.value)}
+                  fullWidth
+                />
+                {isGenerating ? (
+                  <div
+                    className="spinner"
+                    style={{ width: "30px", height: "30px" }}
+                  />
+                ) : (
+                  <>
+                    {/* Check Button */}
+                    <Button
+                      variant="contained"
+                      color="success"
+                      onClick={async () => {
+                        if (!aiPrompt.trim()) return;
+
+                        setIsGenerating(true);
+                        console.log(aiPrompt);
+                        try {
+                          const response = await fetch(
+                            `${BACKEND_URL}/api/groq/generate`,
+                            {
+                              method: "POST",
+                              headers: {
+                                "Content-Type": "application/json",
+                                "ngrok-skip-browser-warning": "69420",
+                              },
+                              body: JSON.stringify({ prompt: aiPrompt }),
+                            }
+                          );
+
+                          const result = await response.json();
+                          console.log(result);
+                          console.log(response);
+                          if (response.ok && result.data) {
+                            setText(result.data); // Populate main message field
+                          } else {
+                            alert(
+                              "Failed to generate message. Try again later!"
+                            );
+                          }
+                        } catch (error) {
+                          console.error("AI generation error:", error);
+                          alert(
+                            "An error occurred while generating the message."
+                          );
+                        } finally {
+                          setIsGenerating(false);
+                          setShowAIInput(false);
+                          setAIPrompt("");
+                        }
+                      }}
+                      style={{
+                        minWidth: "30px",
+                        height: "30px",
+                        borderRadius: "50%",
+                      }}
+                    >
+                      ✓
+                    </Button>
+
+                    {/* Cancel Button */}
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      onClick={() => {
+                        setShowAIInput(false);
+                        setAIPrompt("");
+                      }}
+                      style={{
+                        minWidth: "30px",
+                        height: "30px",
+                        borderRadius: "50%",
+                      }}
+                    >
+                      ✕
+                    </Button>
+                  </>
+                )}
+              </div>
+            )}
+
             {/* Text Area for Enter Message */}
             <TextField
-              label="Enter Message"
+              label="Type in a message to be put on the postcard..."
               variant="outlined"
               fullWidth
               multiline
