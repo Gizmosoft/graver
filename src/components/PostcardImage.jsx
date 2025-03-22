@@ -3,9 +3,6 @@ import React, { useEffect, useState } from "react";
 const PostcardImage = ({ postcard, BACKEND_URL, ...rest }) => {
   const [imageSrc, setImageSrc] = useState("");
 
-  console.log(postcard);
-  console.log(BACKEND_URL);
-
   useEffect(() => {
     if (!postcard || !postcard.image) return; // Ensure postcard data exists
 
