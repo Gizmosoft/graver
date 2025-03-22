@@ -12,7 +12,8 @@ html, body {
     display: flex;
     flex-direction: column;
     height: 100vh;      /* Ensures full-screen height */
-    overflow: hidden;   /* Prevents unnecessary vertical scrolling */
+    overflow-y: auto; /* ✅ Allows page to scroll if needed */
+    overflow-x: hidden;
 }
 
 /* Makes sure content area takes remaining space after the navbar */
