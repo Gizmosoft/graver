@@ -11,9 +11,9 @@ html, body {
 .App {
     display: flex;
     flex-direction: column;
-    height: 100vh;      /* Ensures full-screen height */
+    min-height: 100vh;      /* Ensures full-screen height */
     overflow-y: visible; /* ✅ Allows page to scroll if needed */
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 /* Makes sure content area takes remaining space after the navbar */
@@ -22,21 +22,28 @@ html, body {
     display: flex;
     flex-direction: column;
     align-items: inherit; /* Centers content horizontally */
-    padding-top: 10px; /* Ensures content starts below navbar */
+    padding-top: 20px; /* Ensures content starts below navbar */
     /* overflow-y: auto; Allows scrolling if needed */
     width: 100%;
+    overflow: visible;
 }
 
-/* This makes sure content starts BELOW the navbar automatically */
-.content::before {
+/* .content::before {
     content: "";
     display: block;
-    height: 80px; /* Default height of MUI's AppBar */
-}
+    height: 80px;
+} */
+
+
+.dashboard-page {
+    padding-top: calc(env(safe-area-inset-top, 0px) + 64px); /* on desktop */
+  }
+
+/* This makes sure content starts BELOW the navbar automatically */
 
 /* Responsive Adjustment: Reduce height for smaller screens */
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
     .content::before {
-        height: 56px; /* Smaller navbar height for mobile */
+        height: 56px;
     }
-}
+} */
