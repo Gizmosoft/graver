@@ -1,5 +1,6 @@
 .dashboard-page {
   /* margin-top: 100px; */
+  padding-top: calc(env(safe-area-inset-top, 0px) + 64px);
   margin-left: 20px;
 }
 
@@ -81,7 +82,7 @@
     margin-right: 10px;
     word-wrap: break-word;
     min-width: 0;
-    padding-top: 56px;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 56px);
     padding-bottom: 100px;
     overflow: visible;
   }
