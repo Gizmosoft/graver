@@ -44,9 +44,6 @@ const Dashboard = ({ onLogin }) => {
   };
 
   const handleSubmit = async () => {
-    console.log("Image:", image); // object
-    console.log("Type of Image:", typeof image);
-    console.log("Text:", text); // String
     // Call backend API to submit the form and create a postcard object
     if (!image || !text) {
       alert("Please upload an image and enter a message.");
@@ -80,7 +77,6 @@ const Dashboard = ({ onLogin }) => {
       const result = await response.json();
 
       if (response.ok) {
-        console.log("Postcard created successfully:", result);
         alert("Postcard created successfully!");
         // Update state immediately to show the new postcard
         setPostcards((prevPostcards) => [result.data, ...prevPostcards]);
@@ -116,7 +112,6 @@ const Dashboard = ({ onLogin }) => {
   // Fetch user's postcards
   const fetchPostcards = async () => {
     const creatorId = localStorage.getItem("userId");
-    console.log("Backend URL-> ", BACKEND_URL);
     try {
       const response = await fetch(
         `${BACKEND_URL}/api/postcards/all/${creatorId}`,
@@ -126,11 +121,9 @@ const Dashboard = ({ onLogin }) => {
           }),
         }
       );
-      console.log(response.text);
       const result = await response.json();
 
       if (response.ok) {
-        console.log("Postcards in UI: ", result.data);
         setPostcards(result.data); // Store postcards in state
       } else {
         console.error("Error fetching postcards:", result.message);
@@ -243,7 +236,6 @@ const Dashboard = ({ onLogin }) => {
                         if (!aiPrompt.trim()) return;
 
                         setIsGenerating(true);
-                        console.log(aiPrompt);
                         try {
                           const response = await fetch(
                             `${BACKEND_URL}/api/groq/generate`,
@@ -258,8 +250,6 @@ const Dashboard = ({ onLogin }) => {
                           );
 
                           const result = await response.json();
-                          console.log(result);
-                          console.log(response);
                           if (response.ok && result.data) {
                             setText(result.data); // Populate main message field
                           } else {

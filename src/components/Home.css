@@ -40,3 +40,9 @@
     margin: 10px 0;
     text-align: center;
 }
+
+@media (min-width: 769px) {
+    .home-page {
+        padding-top: calc(env(safe-area-inset-top, 0px) + 64px);
+    }
+}

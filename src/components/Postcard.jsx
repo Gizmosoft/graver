@@ -95,8 +95,6 @@ const Postcard = ({ postcard }) => {
     return <p>No postcard data available.</p>;
   }
 
-  console.log("Postcard fetched:", postcard);
-
   return (
     <div className="postcard-container">
       <div

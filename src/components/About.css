@@ -1,8 +1,21 @@
 .about-section {
     margin-left: 20px;
     margin-right: 20px;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 64px);
+    padding-bottom: 80px;
+    max-width: 100%;        /* Prevent horizontal overflow */
+    overflow-x: hidden;    /* Just to be safe */
+    overflow-y: visible;   /* Allow full height flow */
+    box-sizing: border-box;
 }
 
 .signoff {
     text-align: right;
 }
+
+@media (max-width: 600px) {
+    .about-section {
+      padding-top: calc(env(safe-area-inset-top, 0px) + 56px);
+      padding-bottom: 80px;
+    }
+  }
