@@ -109,7 +109,7 @@ const PostcardPage = () => {
   };
 
   return (
-    <Box className="post-card-page" sx={{ padding: "10px" }}>
+    <Box className="post-card-page">
       <Typography variant="h5" gutterBottom>
         {isViewMode
           ? "Hurray! You've been sent a post card 😊"
